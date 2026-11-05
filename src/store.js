@@ -15,6 +15,9 @@ export function openStore(file) {
       verdict TEXT, score INTEGER, checked_at TEXT, history_json TEXT DEFAULT '[]', UNIQUE(report_id, hash, claim_json)
     );
   `);
+  for (const t of ['reports', 'watch']) {
+    if (!db.prepare(`PRAGMA table_info(${t})`).all().some((c) => c.name === 'workspace')) db.exec(`ALTER TABLE ${t} ADD COLUMN workspace TEXT DEFAULT 'public'`);
+  }
   const id = () => crypto.randomBytes(5).toString('hex');
 
   const ledger = {
@@ -30,10 +33,10 @@ export function openStore(file) {
     },
   };
 
-  function saveReport(report) {
+  function saveReport(report, ws = 'public') {
     const rid = report.id || id();
     const full = { ...report, id: rid };
-    db.prepare('INSERT OR REPLACE INTO reports (id, kind, title, created_at, json) VALUES (?, ?, ?, ?, ?)').run(rid, report.kind, report.title, report.createdAt, JSON.stringify(full));
+    db.prepare('INSERT OR REPLACE INTO reports (id, kind, title, created_at, json, workspace) VALUES (?, ?, ?, ?, ?, ?)').run(rid, report.kind, report.title, report.createdAt, JSON.stringify(full), ws);
     return full;
   }
 
@@ -42,26 +45,26 @@ export function openStore(file) {
     return row ? JSON.parse(row.json) : null;
   };
 
-  const listReports = () =>
-    db.prepare('SELECT json FROM reports ORDER BY created_at DESC LIMIT 50').all().map((r) => {
+  const listReports = (ws = 'public') =>
+    db.prepare('SELECT json FROM reports WHERE workspace = ? ORDER BY created_at DESC LIMIT 50').all(ws).map((r) => {
       const { claims, input, ...rest } = JSON.parse(r.json);
       return { ...rest, claimCount: claims.length };
     });
 
-  function watchReport(report) {
-    const ins = db.prepare(`INSERT OR IGNORE INTO watch (id, report_id, hash, claim_json, best_before, verdict, score, checked_at, history_json)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`);
+  function watchReport(report, ws = 'public') {
+    const ins = db.prepare(`INSERT OR IGNORE INTO watch (id, report_id, hash, claim_json, best_before, verdict, score, checked_at, history_json, workspace)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`);
     let added = 0;
     for (const c of report.claims) {
       const claim = { text: c.text, category: c.category, subject: c.subject, value: c.value, package: c.package, ecosystem: c.ecosystem, file: c.file, line: c.line, sourceLine: c.sourceLine };
       const hist = JSON.stringify([{ at: c.checkedAt, verdict: c.verdict, score: c.score, currentValue: c.currentValue || null }]);
-      added += ins.run(id(), report.id, c.hash, JSON.stringify(claim), c.bestBefore.date, c.verdict, c.score, c.checkedAt, hist).changes;
+      added += ins.run(id(), report.id, c.hash, JSON.stringify(claim), c.bestBefore.date, c.verdict, c.score, c.checkedAt, hist, ws).changes;
     }
     return added;
   }
 
-  function listWatch() {
-    return db.prepare('SELECT w.*, r.title FROM watch w LEFT JOIN reports r ON r.id = w.report_id ORDER BY best_before ASC').all().map((w) => ({
+  function listWatch(ws = 'public') {
+    return db.prepare('SELECT w.*, r.title FROM watch w LEFT JOIN reports r ON r.id = w.report_id WHERE w.workspace = ? ORDER BY best_before ASC').all(ws).map((w) => ({
       id: w.id,
       reportId: w.report_id,
       reportTitle: w.title,
@@ -88,8 +91,8 @@ export function openStore(file) {
 }
 
 // Re-verify every due watch item and return what changed since its last check.
-export async function runWatch(store, engine, { ids, simulateOutage } = {}) {
-  const items = store.listWatch().filter((w) => (ids ? ids.includes(w.id) : w.due));
+export async function runWatch(store, engine, { ids, simulateOutage, workspace } = {}) {
+  const items = store.listWatch(workspace).filter((w) => (ids ? ids.includes(w.id) : w.due));
   if (!items.length) return { checked: 0, changes: [], usage: null };
   const { claims, usage } = await engine.verifyClaims(items.map((w) => w.claim), { simulateOutage });
   const changes = items.map((w, i) => {

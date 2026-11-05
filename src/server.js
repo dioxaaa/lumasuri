@@ -15,6 +15,9 @@ const app = express();
 app.use(express.json({ limit: '1mb' }));
 
 const examplesDir = path.join(root, 'examples');
+// Optional, password-free workspace name sent by the browser; everyone without one shares "public".
+const wsOf = (req) => String(req.get('x-lumasuri-workspace') || '').toLowerCase().replace(/[^a-z0-9_-]/g, '').slice(0, 40) || 'public';
+app.use('/media', express.static(path.join(root, 'docs')));
 const wrap = (fn) => (req, res) => fn(req, res).catch((err) => res.status(500).json({ error: err.message }));
 
 app.get('/api/health', wrap(async (_req, res) => {
@@ -31,8 +34,8 @@ app.get('/api/examples', (_req, res) => {
 app.post('/api/check', wrap(async (req, res) => {
   const { text, simulateOutage, watch } = req.body || {};
   if (!text?.trim()) return res.status(400).json({ error: 'text is required' });
-  const report = store.saveReport(await engine.checkAnswer(text, { simulateOutage }));
-  if (watch) store.watchReport(report);
+  const report = store.saveReport(await engine.checkAnswer(text, { simulateOutage }), wsOf(req));
+  if (watch) store.watchReport(report, wsOf(req));
   res.json(report);
 }));
 
@@ -40,13 +43,13 @@ app.post('/api/scan', wrap(async (req, res) => {
   const { repo, simulateOutage, watch } = req.body || {};
   const dir = path.join(examplesDir, 'repos', path.basename(String(repo || '')));
   if (!repo || !fs.existsSync(dir)) return res.status(400).json({ error: 'unknown example repo' });
-  const report = store.saveReport(await engine.scanRepo(dir, { simulateOutage, title: repo }));
+  const report = store.saveReport(await engine.scanRepo(dir, { simulateOutage, title: repo }), wsOf(req));
   report.input = `examples/repos/${repo}`;
-  if (watch) store.watchReport(report);
-  res.json(store.saveReport(report));
+  if (watch) store.watchReport(report, wsOf(req));
+  res.json(store.saveReport(report, wsOf(req)));
 }));
 
-app.get('/api/reports', (_req, res) => res.json(store.listReports()));
+app.get('/api/reports', (req, res) => res.json(store.listReports(wsOf(req))));
 app.get('/api/reports/:id', (req, res) => {
   const r = store.getReport(req.params.id);
   return r ? res.json(r) : res.status(404).json({ error: 'not found' });
@@ -54,14 +57,14 @@ app.get('/api/reports/:id', (req, res) => {
 app.post('/api/reports/:id/watch', (req, res) => {
   const r = store.getReport(req.params.id);
   if (!r) return res.status(404).json({ error: 'not found' });
-  res.json({ added: store.watchReport(r) });
+  res.json({ added: store.watchReport(r, wsOf(req)) });
 });
 app.get('/badge/:id.svg', (req, res) => {
   const r = store.getReport(req.params.id);
   res.type('image/svg+xml').send(badgeSvg(r?.summary?.score ?? null));
 });
 
-app.get('/api/watch', (_req, res) => res.json(store.listWatch()));
+app.get('/api/watch', (req, res) => res.json(store.listWatch(wsOf(req))));
 app.post('/api/watch/:id/expire', (req, res) => {
   store.expireWatch(req.params.id);
   res.json({ ok: true });
@@ -71,7 +74,7 @@ app.delete('/api/watch/:id', (req, res) => {
   res.json({ ok: true });
 });
 app.post('/api/watch/run', wrap(async (req, res) => {
-  res.json(await runWatch(store, engine, { ids: req.body?.ids, simulateOutage: req.body?.simulateOutage }));
+  res.json(await runWatch(store, engine, { ids: req.body?.ids, simulateOutage: req.body?.simulateOutage, workspace: wsOf(req) }));
 }));
 
 // Guard proxy: an OpenAI-compatible endpoint that answers through Bifrost, then attaches a LumaSuri freshness report.

@@ -3,41 +3,41 @@
 <style>
 @page { size: 1920px 1080px; margin: 0; }
 * { box-sizing: border-box; }
-body { margin:0; font-family: Inter, "Segoe UI", system-ui, sans-serif; color:#1d1830; }
-.s { width:1920px; height:1080px; padding:90px 110px; position:relative; overflow:hidden; background:#f6f4fb; page-break-after:always; display:flex; flex-direction:column; }
-.s.dark { background: radial-gradient(circle at 80% 20%, #3a2a8f 0, #16122b 55%); color:#fff; }
+body { margin:0; font-family: Inter, "Segoe UI", system-ui, sans-serif; color:#1f3038; }
+.s { width:1920px; height:1080px; padding:90px 110px; position:relative; overflow:hidden; background:#f7f9fa; page-break-after:always; display:flex; flex-direction:column; }
+.s.dark { background: radial-gradient(circle at 80% 20%, #1f3038 0, #13222a 55%); color:#fff; }
 h1 { font-size:120px; margin:0; letter-spacing:-3px; }
 h2 { font-size:68px; margin:0 0 36px; letter-spacing:-1.5px; }
 h3 { font-size:34px; margin:0 0 12px; }
 p, li { font-size:32px; line-height:1.45; }
-.kicker { font-size:26px; text-transform:uppercase; letter-spacing:4px; color:#6c4cf1; font-weight:700; margin-bottom:18px; }
-.dark .kicker { color:#b9a8ff; }
-.logo { width:120px; height:120px; border-radius:30px; background:linear-gradient(135deg,#6c4cf1,#c04ce0); display:grid; place-items:center; font-size:64px; font-weight:800; color:#fff; margin-bottom:40px; }
-.foot { position:absolute; bottom:44px; left:110px; right:110px; display:flex; justify-content:space-between; font-size:22px; color:#8b85a3; }
-.dark .foot { color:#a59fc4; }
+.kicker { font-size:26px; text-transform:uppercase; letter-spacing:4px; color:#0d7480; font-weight:700; margin-bottom:18px; }
+.dark .kicker { color:#8fd3d6; }
+.logo { width:120px; height:120px; border-radius:30px; background:linear-gradient(135deg,#0d7480,#14a3a8); display:grid; place-items:center; font-size:64px; font-weight:800; color:#fff; margin-bottom:40px; }
+.foot { position:absolute; bottom:44px; left:110px; right:110px; display:flex; justify-content:space-between; font-size:22px; color:#7d8a90; }
+.dark .foot { color:#9ea7ab; }
 .grid { display:grid; gap:36px; }
 .g3 { grid-template-columns: repeat(3, 1fr); } .g2 { grid-template-columns: 1fr 1fr; }
-.card { background:#fff; border:2px solid #e6e1f3; border-radius:28px; padding:40px; }
+.card { background:#fff; border:2px solid #dbe2e5; border-radius:28px; padding:40px; }
 .dark .card { background:#ffffff12; border-color:#ffffff22; }
-.big { font-size:96px; font-weight:800; letter-spacing:-2px; color:#6c4cf1; line-height:1; }
+.big { font-size:96px; font-weight:800; letter-spacing:-2px; color:#0d7480; line-height:1; }
 .stale { color:#d1453b; } .fresh { color:#2e9e5b; } .aging { color:#c58a00; }
 .claim { font-size:34px; padding:20px 28px; border-radius:18px; background:#fff; border-left:10px solid #d1453b; margin-bottom:18px; }
-.claim small { display:block; font-size:24px; color:#6b6584; margin-top:6px; }
-.shot { border-radius:24px; box-shadow:0 30px 80px #2a1d6b33; border:2px solid #e6e1f3; width:100%; }
+.claim small { display:block; font-size:24px; color:#5d6b72; margin-top:6px; }
+.shot { border-radius:24px; box-shadow:0 30px 80px #16252b33; border:2px solid #dbe2e5; width:100%; }
 table { border-collapse:collapse; width:100%; font-size:28px; }
-td, th { padding:18px 20px; border-bottom:2px solid #e6e1f3; text-align:left; }
-th { color:#6b6584; font-size:24px; text-transform:uppercase; letter-spacing:2px; }
-td.us { font-weight:700; color:#4b2fcf; }
+td, th { padding:18px 20px; border-bottom:2px solid #dbe2e5; text-align:left; }
+th { color:#5d6b72; font-size:24px; text-transform:uppercase; letter-spacing:2px; }
+td.us { font-weight:700; color:#0a5c66; }
 .flow { display:flex; align-items:stretch; gap:10px; margin-top:20px; }
-.step { flex:1; background:#fff; border:2px solid #e6e1f3; border-radius:22px; padding:22px; font-size:21px; position:relative; }
+.step { flex:1; background:#fff; border:2px solid #dbe2e5; border-radius:22px; padding:22px; font-size:21px; position:relative; }
 .step b { display:block; font-size:24px; margin-bottom:8px; }
-.step .tag { display:inline-block; margin-top:10px; font-size:20px; padding:4px 12px; border-radius:999px; background:#f1edff; color:#4b2fcf; font-weight:700; }
+.step .tag { display:inline-block; margin-top:10px; font-size:20px; padding:4px 12px; border-radius:999px; background:#e3f1f2; color:#0a5c66; font-weight:700; }
 .step .tag.t { background:#e7f0ff; color:#2856c9; } .step .tag.z { background:#e3f5ea; color:#2e9e5b; }
-.arrow { align-self:center; font-size:30px; color:#6c4cf1; }
-.pill { display:inline-block; font-size:24px; padding:8px 18px; border-radius:999px; background:#f1edff; color:#4b2fcf; font-weight:700; margin:6px 8px 6px 0; }
-.dark .pill { background:#ffffff1c; color:#e3dcff; }
+.arrow { align-self:center; font-size:30px; color:#0d7480; }
+.pill { display:inline-block; font-size:24px; padding:8px 18px; border-radius:999px; background:#e3f1f2; color:#0a5c66; font-weight:700; margin:6px 8px 6px 0; }
+.dark .pill { background:#ffffff1c; color:#cfe6e8; }
 ul { margin:0; padding-left:36px; } li { margin-bottom:10px; }
-.bb { display:inline-block; font-size:30px; background:#f1edff; color:#4b2fcf; border-radius:14px; padding:10px 20px; font-weight:700; }
+.bb { display:inline-block; font-size:30px; background:#e3f1f2; color:#0a5c66; border-radius:14px; padding:10px 20px; font-weight:700; }
 </style></head><body>
 
 <section class="s dark">
@@ -45,7 +45,7 @@ ul { margin:0; padding-left:36px; } li { margin-bottom:10px; }
     <div class="logo">L</div>
     <div class="kicker">Global AI Hackathon · Problem Statement 06</div>
     <h1>LumaSuri</h1>
-    <p style="font-size:48px;margin:16px 0 40px;color:#e3dcff">Best-before dates for AI-written claims.</p>
+    <p style="font-size:48px;margin:16px 0 40px;color:#cfe6e8">Best-before dates for AI-written claims.</p>
     <span class="pill">Tavily live verification</span><span class="pill">Bifrost LLM gateway</span><span class="pill">Answers + whole repos</span>
   </div>
   <div class="foot"><span><i>luma</i> (old) + <i>suri</i> (examine): examining what has gone old</span><span>Diosa Ella Oliver (dioxaaa) · individual participant · github.com/dioxaaa/lumasuri</span></div>
@@ -140,7 +140,7 @@ ul { margin:0; padding-left:36px; } li { margin-bottom:10px; }
       </ul>
     </div>
     <div class="card">
-      <h3 style="color:#6c4cf1">Bifrost by Maxim AI</h3>
+      <h3 style="color:#0d7480">Bifrost by Maxim AI</h3>
       <ul>
         <li><b>Per-step routing</b>: cheap extractor and a stronger judge, any provider</li>
         <li><b>Automatic fallback</b>: live "provider outage" toggle, rerouted calls shown in the UI</li>
@@ -197,9 +197,9 @@ ul { margin:0; padding-left:36px; } li { margin-bottom:10px; }
   <div style="margin:auto 0">
     <div class="logo">L</div>
     <h1>LumaSuri</h1>
-    <p style="font-size:44px;color:#e3dcff;margin:16px 0 50px">Know what your AI got right, and how long it stays right.</p>
+    <p style="font-size:44px;color:#cfe6e8;margin:16px 0 50px">Know what your AI got right, and how long it stays right.</p>
     <span class="bb" style="background:#ffffff1c;color:#fff">github.com/dioxaaa/lumasuri</span>
-    <p style="margin-top:50px;color:#a59fc4;font-size:28px">Built for the Global AI Hackathon (HackCulture × Geek Room) · Problem Statement 06 · Tavily + Bifrost by Maxim AI</p>
+    <p style="margin-top:50px;color:#9ea7ab;font-size:28px">Built for the Global AI Hackathon (HackCulture × Geek Room) · Problem Statement 06 · Tavily + Bifrost by Maxim AI</p>
   </div>
 </section>
 </body></html>
