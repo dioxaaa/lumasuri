@@ -1,0 +1,44 @@
+{
+  "name": "lumasuri",
+  "version": "0.1.0",
+  "description": "Finds stale claims in AI answers and repos, verifies them live with Tavily through Bifrost, and gives every claim a best-before date.",
+  "main": "src/core/pipeline.js",
+  "scripts": {
+    "dev": "concurrently -n api,web \"node --watch src/server.js\" \"vite web\"",
+    "build": "vite build web",
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js",
+    "lumasuri": "node bin/lumasuri.js"
+  },
+  "keywords": [
+    "ai",
+    "fact-checking",
+    "freshness",
+    "tavily",
+    "bifrost",
+    "llm",
+    "stale"
+  ],
+  "author": "dioxaaa",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "commander": "^15.0.0",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.2.1",
+    "concurrently": "^10.0.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "vite": "^8.3.6"
+  },
+  "type": "module",
+  "bin": {
+    "lumasuri": "bin/lumasuri.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

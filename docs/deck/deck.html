@@ -1,0 +1,205 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>LumaSuri pitch deck</title>
+<style>
+@page { size: 1920px 1080px; margin: 0; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Inter, "Segoe UI", system-ui, sans-serif; color:#1d1830; }
+.s { width:1920px; height:1080px; padding:90px 110px; position:relative; overflow:hidden; background:#f6f4fb; page-break-after:always; display:flex; flex-direction:column; }
+.s.dark { background: radial-gradient(circle at 80% 20%, #3a2a8f 0, #16122b 55%); color:#fff; }
+h1 { font-size:120px; margin:0; letter-spacing:-3px; }
+h2 { font-size:68px; margin:0 0 36px; letter-spacing:-1.5px; }
+h3 { font-size:34px; margin:0 0 12px; }
+p, li { font-size:32px; line-height:1.45; }
+.kicker { font-size:26px; text-transform:uppercase; letter-spacing:4px; color:#6c4cf1; font-weight:700; margin-bottom:18px; }
+.dark .kicker { color:#b9a8ff; }
+.logo { width:120px; height:120px; border-radius:30px; background:linear-gradient(135deg,#6c4cf1,#c04ce0); display:grid; place-items:center; font-size:64px; font-weight:800; color:#fff; margin-bottom:40px; }
+.foot { position:absolute; bottom:44px; left:110px; right:110px; display:flex; justify-content:space-between; font-size:22px; color:#8b85a3; }
+.dark .foot { color:#a59fc4; }
+.grid { display:grid; gap:36px; }
+.g3 { grid-template-columns: repeat(3, 1fr); } .g2 { grid-template-columns: 1fr 1fr; }
+.card { background:#fff; border:2px solid #e6e1f3; border-radius:28px; padding:40px; }
+.dark .card { background:#ffffff12; border-color:#ffffff22; }
+.big { font-size:96px; font-weight:800; letter-spacing:-2px; color:#6c4cf1; line-height:1; }
+.stale { color:#d1453b; } .fresh { color:#2e9e5b; } .aging { color:#c58a00; }
+.claim { font-size:34px; padding:20px 28px; border-radius:18px; background:#fff; border-left:10px solid #d1453b; margin-bottom:18px; }
+.claim small { display:block; font-size:24px; color:#6b6584; margin-top:6px; }
+.shot { border-radius:24px; box-shadow:0 30px 80px #2a1d6b33; border:2px solid #e6e1f3; width:100%; }
+table { border-collapse:collapse; width:100%; font-size:28px; }
+td, th { padding:18px 20px; border-bottom:2px solid #e6e1f3; text-align:left; }
+th { color:#6b6584; font-size:24px; text-transform:uppercase; letter-spacing:2px; }
+td.us { font-weight:700; color:#4b2fcf; }
+.flow { display:flex; align-items:stretch; gap:10px; margin-top:20px; }
+.step { flex:1; background:#fff; border:2px solid #e6e1f3; border-radius:22px; padding:22px; font-size:21px; position:relative; }
+.step b { display:block; font-size:24px; margin-bottom:8px; }
+.step .tag { display:inline-block; margin-top:10px; font-size:20px; padding:4px 12px; border-radius:999px; background:#f1edff; color:#4b2fcf; font-weight:700; }
+.step .tag.t { background:#e7f0ff; color:#2856c9; } .step .tag.z { background:#e3f5ea; color:#2e9e5b; }
+.arrow { align-self:center; font-size:30px; color:#6c4cf1; }
+.pill { display:inline-block; font-size:24px; padding:8px 18px; border-radius:999px; background:#f1edff; color:#4b2fcf; font-weight:700; margin:6px 8px 6px 0; }
+.dark .pill { background:#ffffff1c; color:#e3dcff; }
+ul { margin:0; padding-left:36px; } li { margin-bottom:10px; }
+.bb { display:inline-block; font-size:30px; background:#f1edff; color:#4b2fcf; border-radius:14px; padding:10px 20px; font-weight:700; }
+</style></head><body>
+
+<section class="s dark">
+  <div style="margin:auto 0">
+    <div class="logo">L</div>
+    <div class="kicker">Global AI Hackathon · Problem Statement 06</div>
+    <h1>LumaSuri</h1>
+    <p style="font-size:48px;margin:16px 0 40px;color:#e3dcff">Best-before dates for AI-written claims.</p>
+    <span class="pill">Tavily live verification</span><span class="pill">Bifrost LLM gateway</span><span class="pill">Answers + whole repos</span>
+  </div>
+  <div class="foot"><span><i>luma</i> (old) + <i>suri</i> (examine): examining what has gone old</span><span>github.com/dioxaaa/lumasuri</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">The problem</div>
+  <h2>AI answers freeze time, and then they spread.</h2>
+  <div class="grid g2" style="flex:1">
+    <div>
+      <div class="claim">“Node.js 18 is the current LTS.”<small>Now: Node.js 26 (Lithium)</small></div>
+      <div class="claim">“Use openai.Completion.create with text-davinci-003.”<small>Model retired, SDK rewritten</small></div>
+      <div class="claim">“Heroku has a free tier for hobby apps.”<small>Removed</small></div>
+      <div class="claim">“React 18 is the latest version.”<small>Now: React 19</small></div>
+    </div>
+    <div class="card">
+      <h3>Why it hurts</h3>
+      <ul>
+        <li>LLMs answer from a training cutoff, with full confidence.</li>
+        <li>Their answers get copied into <b>READMEs, code comments, docs and support bots</b>.</li>
+        <li>Nobody re-checks a sentence after it ships. Facts expire silently.</li>
+        <li>Fact-checkers say "true or false today". They don't say <b>when to check again</b>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>LumaSuri</span><span>2</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">The solution</div>
+  <h2>Every claim gets a score, a source and an expiry date.</h2>
+  <div class="grid g3">
+    <div class="card"><div class="big">0–100</div><h3 style="margin-top:20px">Freshness score</h3><p>Combines support, evidence recency and source authority. Every verdict quotes the exact sentence from a live source.</p></div>
+    <div class="card"><div class="big">⏳</div><h3 style="margin-top:20px">Best-before date</h3><p>Based on the source's <b>real release cadence</b> and how fast that kind of fact decays. It tells you when to re-check.</p></div>
+    <div class="card"><div class="big" style="font-size:72px">− / +</div><h3 style="margin-top:20px">Fix diff</h3><p>Stale claims come with a one-line fix for the exact file and line. You review it; LumaSuri never edits files itself.</p></div>
+  </div>
+  <div class="card" style="margin-top:36px;display:flex;gap:40px;align-items:center">
+    <div class="big" style="font-size:64px">👁</div>
+    <p style="margin:0"><b>LumaSuri Watch</b> keeps saved answers and repos. When a claim passes its best-before date, Watch re-verifies it and shows <b>what changed since you saved it</b>.</p>
+  </div>
+  <div class="foot"><span>LumaSuri</span><span>3</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">Working prototype</div>
+  <h2>Paste an answer, or scan a repo.</h2>
+  <div class="grid" style="grid-template-columns: 1.55fr 1fr; align-items:start">
+    <img class="shot" src="../screenshots/03-report.png">
+    <div>
+      <p style="margin-top:0">Web app, CLI and an OpenAI-compatible guard proxy.</p>
+      <ul>
+        <li>Answer annotated in <span class="fresh">green</span> / <span class="aging">amber</span> / <span class="stale">red</span></li>
+        <li>Claim cards: verdict, quoted evidence, official-source badge, fix diff</li>
+        <li>Best-before date with the reason for it</li>
+        <li>Cost & routing panel from Bifrost metadata</li>
+        <li><code>lumasuri scan . --fail-under 60</code> works as a CI check</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>LumaSuri</span><span>4</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">Technical architecture</div>
+  <h2>Cheapest check first. LLM only when needed.</h2>
+  <div class="flow">
+    <div class="step"><b>1 · Candidate filter</b>Regex finds time-sensitive lines in answers, docs, comments and package.json<br><span class="tag z">0 tokens</span></div><div class="arrow">→</div>
+    <div class="step"><b>2 · Extract claims</b>Small model returns category, subject, value and line<br><span class="tag">Bifrost</span></div><div class="arrow">→</div>
+    <div class="step"><b>3 · Ledger + registries</b>Reuse verdicts that haven't expired. npm · PyPI · nodejs.org · endoflife.date<br><span class="tag z">0 tokens</span></div><div class="arrow">→</div>
+    <div class="step"><b>4 · Live search</b>Official domains first, extracted chunks<br><span class="tag t">Tavily</span></div><div class="arrow">→</div>
+    <div class="step"><b>5 · Evidence-locked verdict</b>Judge must quote the source; quotes that can't be found → "unclear"<br><span class="tag">Bifrost</span></div><div class="arrow">→</div>
+    <div class="step"><b>6 · Score + expiry</b>Freshness, best-before, fix diff, stored for Watch<br><span class="tag z">SQLite</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:30px">
+    <div class="card" style="padding:28px 36px"><h3>Freshness</h3><p style="margin:0;font-size:28px">Q = 0.6·Recency + 0.4·Authority<br>supported 60+40Q · unclear 30+20Q · contradicted 15(1−Q)</p></div>
+    <div class="card" style="padding:28px 36px"><h3>Best-before</h3><p style="margin:0;font-size:28px">min(category half-life, measured release cadence)<br>unclear ÷ 3 · contradicted = expired now</p></div>
+  </div>
+  <div class="foot"><span>Node.js · Express · React/Vite · SQLite · Redis · Ollama</span><span>5</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">Sponsor technology</div>
+  <h2>Tavily finds the truth. Bifrost keeps it cheap and reliable.</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3 style="color:#2856c9">Tavily</h3>
+      <ul>
+        <li>Advanced search with <b>include_domains</b> set to the vendor's official docs, plus an open-web fallback</li>
+        <li><b>chunks_per_source</b> gives the judge clean, quotable evidence</li>
+        <li>Publish dates feed the recency score</li>
+        <li>Runs keyless out of the box; add an API key for higher limits</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="color:#6c4cf1">Bifrost by Maxim AI</h3>
+      <ul>
+        <li><b>Per-step routing</b>: cheap extractor and a stronger judge, any provider</li>
+        <li><b>Automatic fallback</b>: live "provider outage" toggle, rerouted calls shown in the UI</li>
+        <li><b>Cache</b> on Redis: repeated checks cost 0 tokens</li>
+        <li><b>Virtual key + budget + rate limit</b>; when hit, LumaSuri stops instead of guessing</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Routing, cache and fallback data come from Bifrost's <code>extra_fields</code></span><span>6</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">Results</div>
+  <h2>Measured, not promised.</h2>
+  <div class="grid g3">
+    <div class="card"><div class="big">87.5%</div><p>accuracy on 16 labeled current/stale claims, with a <b>3B local model</b></p></div>
+    <div class="card"><div class="big">10/16</div><p>claims settled by registries with <b>zero LLM tokens</b></p></div>
+    <div class="card"><div class="big">7</div><p>stale claims found in the demo repo (README, code comments, package.json) with only <b>3 LLM calls</b> and 7 fix diffs</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:36px">
+    <img class="shot" src="../screenshots/05-scan.png" style="height:330px;object-fit:cover;object-position:top">
+    <div class="card"><h3>Honest misses</h3><p style="font-size:28px">The 2 misses ("Bard", "Twitter CEO") came from the small local judge trusting older pages. Switching the judge to a stronger model through Bifrost is one environment variable.</p></div>
+  </div>
+  <div class="foot"><span>Reproduce: <code>node scripts/eval.mjs</code></span><span>7</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">Why it stands out</div>
+  <h2>Not just "is this true?" but "until when?"</h2>
+  <table>
+    <tr><th></th><th>Fact-check chat tools</th><th>Doc-drift linters</th><th>LumaSuri</th></tr>
+    <tr><td>Checks AI answers</td><td>✓</td><td>—</td><td class="us">✓</td></tr>
+    <tr><td>Checks repos (docs, comments, pins)</td><td>—</td><td>✓ (code vs docs)</td><td class="us">✓ (vs the live world)</td></tr>
+    <tr><td>Predicts expiry (best-before)</td><td>—</td><td>—</td><td class="us">✓ from release cadence</td></tr>
+    <tr><td>Re-checks over time + "what changed"</td><td>—</td><td>on commit</td><td class="us">✓ Watch</td></tr>
+    <tr><td>Rejects verdicts it can't quote</td><td>rarely</td><td>n/a</td><td class="us">✓ evidence lock</td></tr>
+    <tr><td>Zero-token deterministic path</td><td>—</td><td>partial</td><td class="us">✓ registries + ledger</td></tr>
+  </table>
+  <div class="foot"><span>LumaSuri</span><span>8</span></div>
+</section>
+
+<section class="s">
+  <div class="kicker">Impact & scale</div>
+  <h2>Verify once, reuse everywhere, until it expires.</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Who needs it</h3><ul><li>Dev teams shipping AI-written docs and code</li><li>Support bots and RAG apps (guard proxy)</li><li>Educators and students using AI answers</li><li>Open-source maintainers keeping READMEs honest</li></ul></div>
+    <div class="card"><h3>Why it scales</h3><ul><li><b>Claim ledger</b>: "Node 18 is LTS" in 1,000 repos is verified once</li><li>Registries handle most version claims for free</li><li>Bifrost: swap providers, add budgets, no code changes</li><li>Runs fully local (Ollama) or in the cloud</li></ul></div>
+  </div>
+  <div class="card" style="margin-top:36px"><h3>Next</h3><p style="margin:0">GitHub Action that posts fix diffs on PRs · browser extension for ChatGPT/Gemini · team Watch digests · more registries (Maven, crates, Go, Docker Hub)</p></div>
+  <div class="foot"><span>LumaSuri</span><span>9</span></div>
+</section>
+
+<section class="s dark">
+  <div style="margin:auto 0">
+    <div class="logo">L</div>
+    <h1>LumaSuri</h1>
+    <p style="font-size:44px;color:#e3dcff;margin:16px 0 50px">Know what your AI got right, and how long it stays right.</p>
+    <span class="bb" style="background:#ffffff1c;color:#fff">github.com/dioxaaa/lumasuri</span>
+    <p style="margin-top:50px;color:#a59fc4;font-size:28px">Built for the Global AI Hackathon (HackCulture × Geek Room) · Problem Statement 06 · Tavily + Bifrost by Maxim AI</p>
+  </div>
+</section>
+</body></html>

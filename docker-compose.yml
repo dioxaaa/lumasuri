@@ -1,0 +1,10 @@
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    network_mode: host
+  bifrost:
+    image: maximhq/bifrost:latest
+    network_mode: host
+    volumes:
+      - ./bifrost/data:/app/data
+    depends_on: [redis]

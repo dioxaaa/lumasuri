@@ -1,0 +1,127 @@
+{
+  "ranAt": "2026-11-05T18:55:16.359Z",
+  "summary": {
+    "total": 16,
+    "accuracy": 0.875,
+    "precisionWhenAnswered": 0.875,
+    "abstained": 0,
+    "registryResolved": 10,
+    "tokens": 12839,
+    "llmCalls": 6,
+    "tavilySearches": 6
+  },
+  "rows": [
+    {
+      "claim": "Node.js 18 is the current LTS release.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "registry",
+      "score": 1
+    },
+    {
+      "claim": "Node.js 26 is the current LTS release.",
+      "expected": "current",
+      "predicted": "current",
+      "method": "registry",
+      "score": 97
+    },
+    {
+      "claim": "The latest major version of React is 18.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "registry",
+      "score": 9
+    },
+    {
+      "claim": "The latest major version of React is 19.",
+      "expected": "current",
+      "predicted": "current",
+      "method": "registry",
+      "score": 76
+    },
+    {
+      "claim": "Python 3.8 is the newest Python release.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "registry",
+      "score": 3
+    },
+    {
+      "claim": "Python 3.15 is the newest Python release.",
+      "expected": "current",
+      "predicted": "current",
+      "method": "registry",
+      "score": 92
+    },
+    {
+      "claim": "The latest version of the express package is 4.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "registry",
+      "score": 9
+    },
+    {
+      "claim": "The latest version of the express package is 5.",
+      "expected": "current",
+      "predicted": "current",
+      "method": "registry",
+      "score": 76
+    },
+    {
+      "claim": "The latest version of the requests library on PyPI is 1.2.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "registry",
+      "score": 8
+    },
+    {
+      "claim": "The latest Django release is Django 3.2.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "registry",
+      "score": 7
+    },
+    {
+      "claim": "Google's AI chatbot is called Bard.",
+      "expected": "stale",
+      "predicted": "current",
+      "method": "llm",
+      "score": 88
+    },
+    {
+      "claim": "text-davinci-003 is the model OpenAI recommends for new applications.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "llm",
+      "score": 5
+    },
+    {
+      "claim": "Twitter's CEO is Jack Dorsey.",
+      "expected": "stale",
+      "predicted": "current",
+      "method": "llm",
+      "score": 79
+    },
+    {
+      "claim": "Facebook's parent company is called Meta.",
+      "expected": "current",
+      "predicted": "current",
+      "method": "llm",
+      "score": 79
+    },
+    {
+      "claim": "Sundar Pichai is the CEO of Google.",
+      "expected": "current",
+      "predicted": "current",
+      "method": "llm",
+      "score": 88
+    },
+    {
+      "claim": "Heroku offers a free tier for hobby apps.",
+      "expected": "stale",
+      "predicted": "stale",
+      "method": "llm",
+      "score": 8
+    }
+  ]
+}

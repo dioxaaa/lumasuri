@@ -1,0 +1,7 @@
+node_modules/
+web/dist/
+/data/
+.env
+bifrost/data/*.db*
+bifrost/data/logs*
+*.log

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://www.getbifrost.ai/schema",
+  "client": { "enable_logging": true, "allowed_origins": ["*"] },
+  "providers": {
+    "ollama": {
+      "keys": [{ "name": "ollama-local", "value": "", "models": ["*"], "weight": 1.0, "ollama_key_config": { "url": "http://127.0.0.1:11434" } }],
+      "network_config": { "default_request_timeout_in_seconds": 180 }
+    },
+    "openai": {
+      "keys": [{ "name": "outage-sim", "value": "sk-simulated-outage", "models": ["*"], "weight": 1.0 }],
+      "network_config": { "base_url": "http://127.0.0.1:9", "default_request_timeout_in_seconds": 5 }
+    }
+  },
+  "governance": {
+    "virtual_keys": [{
+      "id": "vk-lumasuri", "name": "lumasuri-scans", "value": "sk-bf-lumasuri-dev", "is_active": true,
+      "allow_all_providers": true, "rate_limit_id": "rl-lumasuri"
+    }],
+    "budgets": [{ "id": "budget-lumasuri", "max_limit": 5.0, "reset_duration": "1d", "virtual_key_id": "vk-lumasuri" }],
+    "rate_limits": [{ "id": "rl-lumasuri", "token_max_limit": 400000, "token_reset_duration": "1h" }]
+  },
+  "vector_store": { "enabled": true, "type": "redis", "config": { "addr": "127.0.0.1:6379" } },
+  "plugins": [{ "name": "semantic_cache", "enabled": true, "config": { "dimension": 1, "ttl": 86400, "cache_by_model": true, "cache_by_provider": false } }]
+}

@@ -1,0 +1,18 @@
+[
+  { "text": "Node.js 18 is the current LTS release.", "category": "version", "subject": "Node.js", "value": "18", "expected": "stale" },
+  { "text": "Node.js 26 is the current LTS release.", "category": "version", "subject": "Node.js", "value": "26", "expected": "current" },
+  { "text": "The latest major version of React is 18.", "category": "version", "subject": "React", "value": "18", "expected": "stale" },
+  { "text": "The latest major version of React is 19.", "category": "version", "subject": "React", "value": "19", "expected": "current" },
+  { "text": "Python 3.8 is the newest Python release.", "category": "version", "subject": "Python", "value": "3.8", "expected": "stale" },
+  { "text": "Python 3.15 is the newest Python release.", "category": "version", "subject": "Python", "value": "3.15", "expected": "current" },
+  { "text": "The latest version of the express package is 4.", "category": "version", "subject": "express", "value": "4", "package": "express", "ecosystem": "npm", "expected": "stale" },
+  { "text": "The latest version of the express package is 5.", "category": "version", "subject": "express", "value": "5", "package": "express", "ecosystem": "npm", "expected": "current" },
+  { "text": "The latest version of the requests library on PyPI is 1.2.", "category": "version", "subject": "requests", "value": "1.2", "package": "requests", "ecosystem": "pypi", "expected": "stale" },
+  { "text": "The latest Django release is Django 3.2.", "category": "version", "subject": "Django", "value": "3.2", "expected": "stale" },
+  { "text": "Google's AI chatbot is called Bard.", "category": "company", "subject": "Google", "value": "Bard", "expected": "stale" },
+  { "text": "text-davinci-003 is the model OpenAI recommends for new applications.", "category": "model", "subject": "OpenAI", "value": "text-davinci-003", "expected": "stale" },
+  { "text": "Twitter's CEO is Jack Dorsey.", "category": "company", "subject": "Twitter", "value": "Jack Dorsey", "expected": "stale" },
+  { "text": "Facebook's parent company is called Meta.", "category": "company", "subject": "Meta", "value": "Meta", "expected": "current" },
+  { "text": "Sundar Pichai is the CEO of Google.", "category": "company", "subject": "Google", "value": "Sundar Pichai", "expected": "current" },
+  { "text": "Heroku offers a free tier for hobby apps.", "category": "pricing", "subject": "Heroku", "value": "free tier", "expected": "stale" }
+]
