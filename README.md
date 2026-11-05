@@ -35,6 +35,35 @@ Saved claims go into **LumaSuri Watch**. Watch re-verifies them when they expire
 - Pitch deck: [`docs/deck/LumaSuri-pitch.pdf`](docs/deck/LumaSuri-pitch.pdf) · [`.pptx`](docs/deck/LumaSuri-pitch.pptx) · [HTML source](docs/deck/deck.html)
 - Submission summary: [`docs/SUBMISSION.md`](docs/SUBMISSION.md)
 
+## Using the web app
+
+Open `http://localhost:3311`. You don't need an account. The home page shows a live example report and a three-step "How a check works" guide, and it has the 2-minute demo video built in.
+
+1. **Paste an AI answer, or pick a sample.** You can also switch to **Scan a repo**.
+2. **Press Check an answer** (or Ctrl + Enter).
+3. **Read the results.** Each card shows:
+   - what is true now
+   - the quoted source
+   - a fix you can copy
+   - a best-before date
+
+   Press **Save to Watch** to have the claims checked again later.
+
+**Workspace (optional).** You can give your workspace a name in the top bar. It needs no account or password. The name keeps your Watch list and history separate from everyone else's, and it is stored only in your browser. If you don't name one, everything goes into the shared `public` workspace.
+
+| Home | Report | Watch |
+|---|---|---|
+| ![Home](docs/screenshots/01-home.png) | ![Report](docs/screenshots/03-report.png) | ![Watch](docs/screenshots/06-watch.png) |
+| ![Provider outage](docs/screenshots/04-outage.png) | ![Repo scan](docs/screenshots/05-scan.png) | ![Mobile](docs/screenshots/07-mobile.png) |
+
+The UI follows the [taste-skill](https://github.com/Leonxlnx/taste-skill) rules for software pages:
+- Palette (`cool-white-slate`) and font pairing (Geist and Geist Mono) chosen with the skill's own `start.mjs` script
+- Plain copy
+- Real product UI in the hero
+- Equal page margins
+- Quiet hover and press feedback
+- No scroll animations, and motion stops when reduced motion is on
+
 ## Demo results (from this repo)
 
 `node scripts/eval.mjs` runs 16 labeled claims (current and stale). Results with local `qwen2.5:3b` through Bifrost and keyless Tavily:
@@ -209,7 +238,7 @@ docs/          pitch deck, architecture, eval results
 
 Node.js, Express, React + Vite, SQLite (better-sqlite3), Tavily, Bifrost by Maxim AI, Redis, Ollama (Qwen 2.5).
 
-AI tools used during development: Devin (Cognition) helped with coding, the README and the pitch materials. All design decisions and the submission are by the team.
+AI tools used during development: Devin (Cognition) helped with coding, the README and the pitch materials. All design decisions and the submission are by the author, Diosa Ella Oliver ([@dioxaaa](https://github.com/dioxaaa)), who entered as an individual participant.
 
 ## License
 
