@@ -209,7 +209,7 @@ docs/          pitch deck, architecture, eval results
 
 Node.js, Express, React + Vite, SQLite (better-sqlite3), Tavily, Bifrost by Maxim AI, Redis, Ollama (Qwen 2.5).
 
-AI tools used during development: Devin (Cognition) helped with coding, the README and the pitch materials. All design decisions and the submission are by the team.
+AI tools used during development: Devin (Cognition) helped with coding, the README and the pitch materials. All design decisions and the submission are by the author, Diosa Ella Oliver ([@dioxaaa](https://github.com/dioxaaa)), who entered as an individual participant.
 
 ## License
 

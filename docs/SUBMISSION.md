@@ -1,6 +1,7 @@
 # HackCulture submission: LumaSuri
 
 **Project name:** LumaSuri
+**Participant:** Diosa Ella Oliver ([@dioxaaa](https://github.com/dioxaaa)), individual participant (solo)
 **Tagline:** Best-before dates for AI-written claims.
 **Primary theme:** Problem Statement 06: Build a Stale-Answer Detector for AI Applications (Tavily + Bifrost)
 **Repository:** https://github.com/dioxaaa/lumasuri
