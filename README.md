@@ -29,12 +29,6 @@ Saved claims go into **LumaSuri Watch**. Watch re-verifies them when they expire
 | Cost | One LLM call per claim | **Registry first** (npm, PyPI, nodejs.org, endoflife.date, 0 tokens), then Tavily plus an LLM judge only when needed. A **cross-repo claim ledger** reuses verdicts until they expire |
 | Fix | "This is wrong" | One-line **fix diff** for the exact file and line |
 
-## Submission materials
-
-- Demo video: [`docs/video/LumaSuri-demo.mp4`](docs/video/LumaSuri-demo.mp4)
-- Pitch deck: [`docs/deck/LumaSuri-pitch.pdf`](docs/deck/LumaSuri-pitch.pdf) · [`.pptx`](docs/deck/LumaSuri-pitch.pptx) · [HTML source](docs/deck/deck.html)
-- Submission summary: [`docs/SUBMISSION.md`](docs/SUBMISSION.md)
-
 ## Using the web app
 
 Open `http://localhost:3311`. You don't need an account. The home page shows a live example report and a three-step "How a check works" guide, and it has the 2-minute demo video built in.
@@ -56,13 +50,7 @@ Open `http://localhost:3311`. You don't need an account. The home page shows a l
 | ![Home](docs/screenshots/01-home.png) | ![Report](docs/screenshots/03-report.png) | ![Watch](docs/screenshots/06-watch.png) |
 | ![Provider outage](docs/screenshots/04-outage.png) | ![Repo scan](docs/screenshots/05-scan.png) | ![Mobile](docs/screenshots/07-mobile.png) |
 
-The UI follows the [taste-skill](https://github.com/Leonxlnx/taste-skill) rules for software pages:
-- Palette (`cool-white-slate`) and font pairing (Geist and Geist Mono) chosen with the skill's own `start.mjs` script
-- Plain copy
-- Real product UI in the hero
-- Equal page margins
-- Quiet hover and press feedback
-- No scroll animations, and motion stops when reduced motion is on
+The UI is styled after the LumaSuri mascot logo: warm cream paper, teal and orange accents, chunky display type (Gorditas) over Nunito and Space Mono, ink-outlined "sticker" buttons, and a floating helper chatbot that explains every feature in plain words.
 
 ## Demo results (from this repo)
 
