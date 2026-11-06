@@ -171,6 +171,8 @@ docker compose up -d
 npm run build && npm start
 ```
 
+No Docker? On Windows you can run the same stack natively — see `scripts/dev-up.ps1`: it uses the `npx @maximhq/bifrost` binary, a portable Redis build, and your local Ollama install.
+
 Optional environment:
 
 | Variable | Default | Purpose |
@@ -234,11 +236,20 @@ docs/          pitch deck, architecture, eval results
 - When it can't confirm a quote, it says **unclear** instead of guessing.
 - It never edits files itself. Fixes are shown as diffs for you to apply.
 
+## Privacy and security
+
+- **No cookies, accounts or tracking.** The optional "workspace" is just a name stored in your browser's `localStorage` and sent as an `x-lumasuri-workspace` header. It separates history and Watch lists — it is not authentication, so use it for organization, not secrecy.
+- **Keys never reach the browser.** `TAVILY_API_KEY` and `BIFROST_VIRTUAL_KEY` are read server-side only. `/api/health` reports whether a Tavily key is configured, never the key.
+- **What leaves the machine:** extracted claim text goes to the LLM providers configured in Bifrost, and search queries go to Tavily. With local Ollama models, only the Tavily searches leave your network.
+- **Data stays local.** Reports and Watch lists live in `data/lumasuri.db` (gitignored). Delete the file to wipe everything.
+- **API hardening:** zod-validated request bodies, a 40 KB answer cap, per-IP rate limits on the spend-incurring endpoints (`/api/check`, `/api/scan`, `/api/watch/run`, `/v1/chat/completions`), parameterized SQL throughout, http(s)-only evidence links, workspace-scoped report and Watch access, repo scans confined to `examples/repos/`, and CSP/frame/referrer security headers on every response. The README badge endpoint is intentionally public by report ID — it exposes only the freshness score.
+- **Found a problem?** Please open a private issue or contact [@dioxaaa](https://github.com/dioxaaa) rather than posting exploit details publicly.
+
 ## Built with
 
 Node.js, Express, React + Vite, SQLite (better-sqlite3), Tavily, Bifrost by Maxim AI, Redis, Ollama (Qwen 2.5).
 
-AI tools used during development: Devin (Cognition) helped with coding, the README and the pitch materials. All design decisions and the submission are by the author, Diosa Ella Oliver ([@dioxaaa](https://github.com/dioxaaa)), who entered as an individual participant.
+AI tools used during development: Devin (Cognition) helped with coding, the README and the pitch materials. All design decisions and the submission are by the author, ([@dioxaaa](https://github.com/dioxaaa)), who entered as an individual participant.
 
 ## License
 

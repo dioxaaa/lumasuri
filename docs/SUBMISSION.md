@@ -17,6 +17,19 @@ LumaSuri finds the time-sensitive claims in AI answers and whole repositories (R
 
 LumaSuri Watch re-checks saved claims when they expire and shows what changed.
 
+## Why LumaSuri
+
+AI assistants answer with facts frozen at training time — versions, prices, model names, APIs, leadership. Those answers get pasted into READMEs, tutorials, code comments and production bots, and nobody checks them again. "Use Node 18 LTS" was correct advice that now yields outdated, broken setups. Dependencies have Dependabot and Renovate; facts in text have nothing.
+
+LumaSuri treats correctness the way food packaging treats freshness: not binary, but decaying. Every claim gets a best-before date, verified only against quotes that actually appear in live sources, dated by how fast that kind of fact changes, and re-checked on schedule. And it stays cheap: version claims are settled by registries at zero tokens, so model spend only goes where it's needed.
+
+## Who it's for
+
+- **Developers and teams shipping AI features.** Anyone whose product answers with an LLM — chatbots, copilots, RAG assistants — has answers that quietly go stale. The guard proxy (`/v1/chat/completions`) drops into an existing OpenAI-style integration and attaches a freshness report to every reply.
+- **Docs and repo maintainers.** READMEs, code comments and package.json pins copied from AI answers rot silently. `lumasuri scan` plus the `--fail-under` CI check catches them like a Dependabot for facts.
+- **Everyday AI users and learners.** People who paste a ChatGPT/Gemini answer into a tutorial or starter project and hit broken installs because "current LTS" moved on.
+- **Teams where wrong answers cost money.** Support, pricing and policy bots that must not repeat last year's numbers; Watch re-checks the saved claims on schedule.
+
 ## How Tavily is used
 
 - Advanced search, limited to the vendor's official domains (`include_domains`), with an open-web fallback.

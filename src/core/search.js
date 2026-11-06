@@ -60,7 +60,7 @@ export function createTavily({ fetchImpl = fetch, apiKey = config.tavilyKey } = 
       data = await post(base);
       if (usage) usage.tavilySearches += 1;
     }
-    return (data.results || []).map((r) => ({
+    return (data.results || []).filter((r) => /^https?:\/\//i.test(r.url || '')).map((r) => ({
       url: r.url,
       title: r.title,
       content: (r.content || '').slice(0, 1400),

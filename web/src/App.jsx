@@ -35,6 +35,7 @@ const daysUntil = (date) => Math.round((new Date(date).getTime() - Date.now()) /
 const fmtDate = (d) => new Date(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+
 function Ring({ score, size = 96 }) {
   const r = size / 2 - 8;
   const c = 2 * Math.PI * r;
@@ -58,7 +59,9 @@ function HeroDemo() {
   }, [paused, i]);
   const d = DEMO[i];
   return (
-    <div className="frame">
+    <div className="frame-wrap">
+      <img className="mascot-sticker" src="/logo.png" alt="LumaSuri logo" />
+      <div className="frame">
       <div className="frame-bar"><i /><i /><i /><span>lumasuri · Check an answer</span></div>
       <div className="frame-body">
         <p className="frame-label">AI answer</p>
@@ -83,6 +86,7 @@ function HeroDemo() {
       <div className="frame-foot">
         <span className={`tick ${paused ? 'paused' : ''}`} key={`t${i}`} />
         <button className="link-btn" onClick={() => setPaused((p) => !p)} aria-pressed={paused}>{paused ? 'Play' : 'Pause'}</button>
+      </div>
       </div>
     </div>
   );
@@ -413,7 +417,7 @@ export default function App() {
     <>
       <header className="nav">
         <div className="wrap row between">
-          <a className="brand" href="#top"><span className="mark">L</span> LumaSuri</a>
+          <a className="brand" href="#top"><img className="brand-logo" src="/logo.png" alt="LumaSuri — examines what has gone old" /></a>
           <nav className="row gap nav-links">
             <a href="#how">How it works</a>
             <a href="#demo">Demo</a>
@@ -430,6 +434,7 @@ export default function App() {
         <section className="hero">
           <div className="wrap hero-grid">
             <div className="hero-copy">
+              <p className="eyebrow">✦ Examines what has gone old ✦</p>
               <h1>Stale-claim checker for AI answers and code</h1>
               <p className="lead">Paste an AI answer or scan a repo. LumaSuri checks every time-sensitive claim against live sources, quotes the evidence, suggests a fix and gives each claim a best-before date.</p>
               <div className="row gap wrap-row">
@@ -477,8 +482,8 @@ export default function App() {
         <section className="section dark" id="demo">
           <div className="wrap demo-grid">
             <div>
-              <h2>The 2-minute demo</h2>
-              <p className="lead">A real run on local models: a stale answer, its evidence and fixes, a provider outage, a repo scan and Watch.</p>
+              <h2>The 1-minute demo</h2>
+              <p className="lead">A quick tour of the app: a stale answer, its evidence and fixes, then Watch and History.</p>
               <ol className="demo-steps">
                 <li>Pick a sample answer and press <b>Check an answer</b>.</li>
                 <li>Read each card: what is true now, the quoted source and the fix.</li>
@@ -557,7 +562,7 @@ export default function App() {
 
       <footer className="foot">
         <div className="wrap row between wrap-row">
-          <span>LumaSuri · Global AI Hackathon, Problem Statement 06 · Tavily + Bifrost</span>
+          <span className="foot-inner"><img className="foot-logo" src="/logo.png" alt="LumaSuri — examines what has gone old" /> LumaSuri · Global AI Hackathon, Problem Statement 06 · Tavily + Bifrost</span>
           <a href="https://github.com/dioxaaa/lumasuri" target="_blank" rel="noreferrer">github.com/dioxaaa/lumasuri</a>
         </div>
       </footer>
