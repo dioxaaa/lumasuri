@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Chat from './Chat.jsx';
 
 const WS_KEY = 'lumasuri.workspace';
 const getWorkspace = () => localStorage.getItem(WS_KEY) || '';
@@ -562,11 +563,12 @@ export default function App() {
 
       <footer className="foot">
         <div className="wrap row between wrap-row">
-          <span className="foot-inner"><img className="foot-logo" src="/logo.png" alt="LumaSuri — examines what has gone old" /> LumaSuri · Global AI Hackathon, Problem Statement 06 · Tavily + Bifrost</span>
+          <span className="foot-inner"><img className="foot-logo" src="/logo.png" alt="LumaSuri — examines what has gone old" /> LumaSuri · Examines what has gone old</span>
           <a href="https://github.com/dioxaaa/lumasuri" target="_blank" rel="noreferrer">github.com/dioxaaa/lumasuri</a>
         </div>
       </footer>
       {toast && <div className="toast" role="status">{toast}</div>}
+      <Chat />
     </>
   );
 }
