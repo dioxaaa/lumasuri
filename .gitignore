@@ -5,3 +5,5 @@ web/dist/
 bifrost/data/*.db*
 bifrost/data/logs*
 *.log
+tools/
+bifrost-http.exe

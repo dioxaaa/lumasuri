@@ -40,8 +40,10 @@ export function openStore(file) {
     return full;
   }
 
-  const getReport = (rid) => {
-    const row = db.prepare('SELECT json FROM reports WHERE id = ?').get(rid);
+  const getReport = (rid, ws = null) => {
+    const row = ws
+      ? db.prepare('SELECT json FROM reports WHERE id = ? AND workspace = ?').get(rid, ws)
+      : db.prepare('SELECT json FROM reports WHERE id = ?').get(rid);
     return row ? JSON.parse(row.json) : null;
   };
 
@@ -84,8 +86,8 @@ export function openStore(file) {
     db.prepare('UPDATE watch SET best_before = ?, verdict = ?, score = ?, checked_at = ?, history_json = ? WHERE id = ?').run(verified.bestBefore.date, verified.verdict, verified.score, verified.checkedAt, JSON.stringify(history), wid);
   }
 
-  const expireWatch = (wid) => db.prepare("UPDATE watch SET best_before = ? WHERE id = ?").run(new Date(Date.now() - 1000).toISOString(), wid);
-  const removeWatch = (wid) => db.prepare('DELETE FROM watch WHERE id = ?').run(wid);
+  const expireWatch = (wid, ws = 'public') => db.prepare('UPDATE watch SET best_before = ? WHERE id = ? AND workspace = ?').run(new Date(Date.now() - 1000).toISOString(), wid, ws);
+  const removeWatch = (wid, ws = 'public') => db.prepare('DELETE FROM watch WHERE id = ? AND workspace = ?').run(wid, ws);
 
   return { db, ledger, saveReport, getReport, listReports, watchReport, listWatch, updateWatch, expireWatch, removeWatch };
 }
